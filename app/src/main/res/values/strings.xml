@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">IntentLoginDashboard</string>
-        <string name="welcome_back">Welcome Back!</string>
-        <string name="login_subtitle">Sign in to continue to your dashboard</string>
-        <string name="full_name">Full Name</string>
-        <string name="enter_full_name">Enter your full name</string>
-        <string name="email_address">Email Address</string>
-        <string name="enter_email">Enter your email</string>
-        <string name="password">Password</string>
-        <string name="enter_password">Enter your password</string>
-        <string name="login">LOGIN →</string>
-        <string name="secure_simple_fast">Secure • Simple • Fast</string>
-    </resources>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="login_subtitle">Sign in to continue to your dashboard</string>
+    <string name="full_name">Full Name</string>
+    <string name="enter_full_name">Enter your full name</string>
+    <string name="email_address">Email Address</string>
+    <string name="enter_email">Enter your email</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter your password</string>
+    <string name="login">LOGIN →</string>
+    <string name="secure_simple_fast">Secure • Simple • Fast</string>
+</resources>
