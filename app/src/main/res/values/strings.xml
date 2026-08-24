@@ -1,5 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- App -->
     <string name="app_name">IntentLoginDashboard</string>
+
+    <!-- Login Screen -->
     <string name="welcome_back">Welcome Back!</string>
     <string name="login_subtitle">Sign in to continue to your dashboard</string>
     <string name="full_name">Full Name</string>
@@ -10,4 +15,16 @@
     <string name="enter_password">Enter your password</string>
     <string name="login">LOGIN →</string>
     <string name="secure_simple_fast">Secure • Simple • Fast</string>
+
+    <!-- Dashboard -->
+    <string name="email">Email</string>
+    <string name="email_hint">user@email.com</string>
+    <string name="logout">LOGOUT</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">Welcome Notifications</string>
+    <string name="notification_channel_description">Notifications after successful login</string>
+    <string name="notification_title">Welcome</string>
+    <string name="notification_message">Welcome! You have successfully logged in.</string>
+
 </resources>
