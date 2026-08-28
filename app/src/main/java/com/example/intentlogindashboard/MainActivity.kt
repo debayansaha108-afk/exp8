@@ -13,36 +13,44 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val name = findViewById<EditText>(R.id.etName)
-        val email = findViewById<EditText>(R.id.etEmail)
-        val password = findViewById<EditText>(R.id.etPassword)
-        val loginButton = findViewById<Button>(R.id.btnLogin)
+        val nameEditText = findViewById<EditText>(R.id.nameEditText)
+        val emailEditText = findViewById<EditText>(R.id.emailEditText)
+        val passwordEditText = findViewById<EditText>(R.id.passwordEditText)
+        val loginButton = findViewById<Button>(R.id.loginButton)
 
         loginButton.setOnClickListener {
 
-            val userName = name.text.toString().trim()
-            val userEmail = email.text.toString().trim()
-            val userPassword = password.text.toString().trim()
+            val name = nameEditText.text.toString().trim()
+            val email = emailEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
 
-            if (userName.isEmpty() ||
-                userEmail.isEmpty() ||
-                userPassword.isEmpty()) {
-
-                Toast.makeText(
-                    this,
-                    "Please fill all fields",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-            } else {
-
-                val intent = Intent(this, DashboardActivity::class.java)
-
-                intent.putExtra("USER_NAME", userName)
-                intent.putExtra("USER_EMAIL", userEmail)
-
-                startActivity(intent)
+            if (name.isEmpty()) {
+                nameEditText.error = "Please enter your name"
+                return@setOnClickListener
             }
+
+            if (email.isEmpty()) {
+                emailEditText.error = "Please enter your email"
+                return@setOnClickListener
+            }
+
+            if (password.isEmpty()) {
+                passwordEditText.error = "Please enter your password"
+                return@setOnClickListener
+            }
+
+            Toast.makeText(
+                this,
+                "Login successful!",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            val intent = Intent(this, DashboardActivity::class.java)
+
+            intent.putExtra("USER_NAME", name)
+            intent.putExtra("USER_EMAIL", email)
+
+            startActivity(intent)
         }
     }
 }

@@ -1,77 +1,43 @@
 package com.example.intentlogindashboard
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
-import android.os.Build
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
+import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 class DashboardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_dashboard)
 
-        val tvWelcome = findViewById<TextView>(R.id.tvWelcome)
-        val tvName = findViewById<TextView>(R.id.tvName)
-        val tvEmail = findViewById<TextView>(R.id.tvEmail)
-        val btnLogout = findViewById<Button>(R.id.btnLogout)
+        val welcomeTextView = findViewById<TextView>(R.id.welcomeTextView)
+        val nameTextView = findViewById<TextView>(R.id.nameTextView)
+        val emailTextView = findViewById<TextView>(R.id.emailTextView)
+        val logoutButton = findViewById<Button>(R.id.logoutButton)
 
-        val userName = intent.getStringExtra("USER_NAME")
-        val userEmail = intent.getStringExtra("USER_EMAIL")
+        val name = intent.getStringExtra("USER_NAME") ?: "User"
+        val email = intent.getStringExtra("USER_EMAIL") ?: "No email"
 
-        tvWelcome.text = "Welcome, $userName!"
-        tvName.text = userName
-        tvEmail.text = userEmail
+        welcomeTextView.text = "Welcome, $name!"
 
-        // Show notification after login
-        showWelcomeNotification(userName)
+        nameTextView.text = "Name: $name"
 
-        // Logout
-        btnLogout.setOnClickListener {
+        emailTextView.text = "Email: $email"
 
-            val logoutIntent = Intent(this, MainActivity::class.java)
+        logoutButton.setOnClickListener {
 
-            logoutIntent.flags =
+            val intent = Intent(this, MainActivity::class.java)
+
+            intent.flags =
                 Intent.FLAG_ACTIVITY_NEW_TASK or
                         Intent.FLAG_ACTIVITY_CLEAR_TASK
 
-            startActivity(logoutIntent)
+            startActivity(intent)
+
+            finish()
         }
-    }
-
-    private fun showWelcomeNotification(name: String?) {
-
-        val channelId = "welcome_channel"
-
-        val notificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        // Create notification channel for Android 8+
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            val channel = NotificationChannel(
-                channelId,
-                "Welcome Notifications",
-                NotificationManager.IMPORTANCE_HIGH
-            )
-
-            channel.description = "Welcome notification after login"
-
-            notificationManager.createNotificationChannel(channel)
-        }
-
-        val notification = android.app.Notification.Builder(this, channelId)
-            .setSmallIcon(android.R.drawable.ic_dialog_info)
-            .setContentTitle("🔔 Welcome")
-            .setContentText("Welcome ${name ?: "User"}! You have successfully logged in.")
-            .setAutoCancel(true)
-            .build()
-
-        notificationManager.notify(1001, notification)
     }
 }

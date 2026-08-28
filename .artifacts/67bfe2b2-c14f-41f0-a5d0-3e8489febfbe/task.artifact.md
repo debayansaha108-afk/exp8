@@ -1,0 +1,6 @@
+- [x] Define modern color palette in `colors.xml`
+- [x] Define `Theme.BasicViewsApp` in `themes.xml`
+- [x] Refactor `activity_main.xml` for better aesthetics
+- [x] Refactor `activity_dashboard.xml` for better aesthetics
+- [/] Initialize Git repository and push to GitHub
+- [ ] Verify build and UI
