@@ -1,6 +1,5 @@
-- [x] Define modern color palette in `colors.xml`
-- [x] Define `Theme.BasicViewsApp` in `themes.xml`
-- [x] Refactor `activity_main.xml` for better aesthetics
-- [x] Refactor `activity_dashboard.xml` for better aesthetics
-- [/] Initialize Git repository and push to GitHub
+- [ ] Wrap `activity_dashboard.xml` in a `ScrollView`
+- [ ] Add "Preferences" card with Switch, CheckBox, RadioGroup, and SeekBar to `activity_dashboard.xml`
+- [ ] Update `DashboardActivity.kt` with listeners for new views
 - [ ] Verify build and UI
+- [ ] Push changes to GitHub

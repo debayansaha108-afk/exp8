@@ -1,57 +1,45 @@
-# Aesthetic UI Development and Git Integration
+# Extended Basic Views Implementation
 
-The goal is to enhance the visual appeal of the "Basic Views App" using modern Android design principles (within the constraints of basic Views/XML) and push the project to the specified GitHub repository.
-
-## User Review Required
-
-> [!IMPORTANT]
-> The package name for `DashboardActivity.kt` will be updated to `com.example.intentlogindashboard` to match the project namespace. This ensures the app compiles and runs correctly.
-
-> [!NOTE]
-> We will define a new theme `Theme.BasicViewsApp` in `themes.xml` to resolve the current build error in `AndroidManifest.xml`.
+The goal is to demonstrate more interactive components from the Android "Basic Views" library by adding a "Preferences" section to the Dashboard.
 
 ## Proposed Changes
 
-### Configuration & Fixes
-
-#### [MODIFY] [DashboardActivity.kt](file:///C:/Users/DEBAYAN/AndroidStudioProjects/IntentLoginDashboard/app/src/main/java/com/example/intentlogindashboard/DashboardActivity.kt)
-- Correct package name to `com.example.intentlogindashboard`.
-
-#### [MODIFY] [themes.xml](file:///C:/Users/DEBAYAN/AndroidStudioProjects/IntentLoginDashboard/app/src/main/res/values/themes.xml)
-- Define `Theme.BasicViewsApp` to match `AndroidManifest.xml`.
-
-#### [MODIFY] [colors.xml](file:///C:/Users/DEBAYAN/AndroidStudioProjects/IntentLoginDashboard/app/src/main/res/values/colors.xml)
-- Add a modern color palette (Indigo, Slate, Blue) to be used across the UI.
-
----
-
-### UI Improvements
-
-#### [MODIFY] [activity_main.xml](file:///C:/Users/DEBAYAN/AndroidStudioProjects/IntentLoginDashboard/app/src/main/res/layout/activity_main.xml)
-- Implement a "Glassmorphism" inspired login card.
-- Apply `login_gradient` to the background.
-- Apply `edit_text_modern` to inputs.
-- Use `login_button` for the primary action.
-- Add a circular logo section.
+### UI Components (Basic Views)
 
 #### [MODIFY] [activity_dashboard.xml](file:///C:/Users/DEBAYAN/AndroidStudioProjects/IntentLoginDashboard/app/src/main/res/layout/activity_dashboard.xml)
-- Restructure using a clean, card-based layout for user profile details.
-- Consistent background styling.
+- Wrap existing content in a `ScrollView` to handle scrolling.
+- Add a new "App Preferences" card containing:
+    - **Switch**: For "Push Notifications" toggle.
+    - **CheckBox**: For "Accept Terms" or "Subscribe" options.
+    - **RadioGroup & RadioButtons**: For selecting "App Theme" (Light, Dark, System).
+    - **SeekBar**: For "Font Size" adjustment simulation.
+- Ensure all components follow the existing aesthetic (rounded cards, modern colors).
 
----
+### Logic Implementation
 
-### Git Integration
+#### [MODIFY] [DashboardActivity.kt](file:///C:/Users/DEBAYAN/AndroidStudioProjects/IntentLoginDashboard/app/src/main/java/com/example/intentlogindashboard/DashboardActivity.kt)
+- Initialize all new views.
+- Add listeners for:
+    - `Switch`: Show a Toast when toggled.
+    - `CheckBox`: Update UI state based on check.
+    - `RadioGroup`: Identify which option was selected.
+    - `SeekBar`: Show the current value in a Toast or TextView.
 
-#### [NEW] Git Initialization
-- Run `git init`.
-- Add remote: `https://github.com/debayansaha108-afk/exp-4.git`.
-- Initial commit and push to `main` branch.
+### Git & Verification
+
+#### [UPDATE] Git Push
+- Commit and push the new interactive features to the `main` branch.
 
 ## Verification Plan
 
 ### Automated Tests
-- `gradlew assembleDebug` to ensure the project builds without errors after package and theme changes.
+- `gradlew assembleDebug` to ensure no syntax errors in the new XML components.
 
 ### Manual Verification
-- Visual inspection of XML layouts to ensure all custom drawables are correctly applied.
-- Verify Git remote is correctly set using `git remote -v`.
+- Deploy to emulator/device.
+- Interact with each new component:
+    - Toggle the Switch.
+    - Check/Uncheck the CheckBox.
+    - Change the Radio selection.
+    - Slide the SeekBar.
+- Confirm all Toast messages or UI updates appear as expected.
