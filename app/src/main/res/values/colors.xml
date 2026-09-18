@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Colors -->
+    <color name="bank_primary">#1A237E</color>
+    <color name="bank_primary_light">#534BAE</color>
+    <color name="bank_primary_dark">#000051</color>
+    <color name="bank_accent">#00C853</color>
+
+    <color name="bg_grey">#F5F7FA</color>
+    <color name="text_dark">#212121</color>
+    <color name="text_grey">#757575</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Gradient for Balance Card -->
+    <color name="grad_start">#1A237E</color>
+    <color name="grad_end">#3949AB</color>
+
+    <!-- UI Colors from previous edits -->
     <color name="primary">#6366F1</color>
     <color name="primary_dark">#4F46E5</color>
     <color name="accent">#818CF8</color>
-
-    <!-- Secondary Colors -->
     <color name="secondary">#0EA5E9</color>
     <color name="secondary_dark">#0284C7</color>
-
-    <!-- Neutral Colors -->
     <color name="bg_light">#F8FAFC</color>
     <color name="text_main">#1E293B</color>
     <color name="text_secondary">#64748B</color>
     <color name="stroke_color">#E2E8F0</color>
-
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="transparent">#00000000</color>
 </resources>

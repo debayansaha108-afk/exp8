@@ -1,5 +1,22 @@
-- [ ] Wrap `activity_dashboard.xml` in a `ScrollView`
-- [ ] Add "Preferences" card with Switch, CheckBox, RadioGroup, and SeekBar to `activity_dashboard.xml`
-- [ ] Update `DashboardActivity.kt` with listeners for new views
-- [ ] Verify build and UI
-- [ ] Push changes to GitHub
+# Task: Build BankMate Application
+
+- [x] **Setup & Dependencies**
+    - [x] Add `fragment-ktx` to `build.gradle.kts`
+    - [x] Update `AndroidManifest.xml` (Launcher, Permissions, Activities)
+- [x] **Resources & Aesthetics**
+    - [x] Add banking strings to `strings.xml`
+    - [x] Add banking colors to `colors.xml`
+    - [x] Create modern drawables (`card_bg`, `btn_gradient`, etc.)
+- [x] **Activities Implementation**
+    - [x] Implement `AccountActivity.kt` (Dashboard + Lifecycle Logs)
+    - [x] Implement `activity_account.xml` (Balance Card + Fragment Container)
+    - [x] Implement `TransactionActivity.kt` (Extras, Notification + Lifecycle Logs)
+    - [x] Implement `activity_transaction.xml` (Professional Confirmation UI)
+- [x] **Fragments Implementation**
+    - [x] Implement `AccountDetailsFragment` (UI + Logic)
+    - [x] Implement `FundTransferFragment` (Form + Validation + Intent)
+    - [x] Implement `TransactionHistoryFragment` (Sample Data List)
+- [x] **Cleanup & Verification**
+    - [x] Delete redundant placeholder files
+    - [x] Sync Gradle and Build Project
+    - [x] Verify Functional Flow & Lifecycle Logs in Logcat

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fund_transfer"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/bank_primary"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etBeneficiaryName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/beneficiary_name"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="12dp"
+            android:padding="12dp"
+            android:background="@drawable/edit_text_modern"
+            android:textSize="14sp"/>
+
+        <EditText
+            android:id="@+id/etAccountNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/account_number"
+            android:inputType="number"
+            android:layout_marginBottom="12dp"
+            android:padding="12dp"
+            android:background="@drawable/edit_text_modern"
+            android:textSize="14sp"/>
+
+        <EditText
+            android:id="@+id/etAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/transfer_amount"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="16dp"
+            android:padding="12dp"
+            android:background="@drawable/edit_text_modern"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/transfer_mode"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_grey"
+            android:layout_marginBottom="8dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgTransferMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+
+            <RadioButton
+                android:id="@+id/rbIMPS"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="IMPS"
+                android:textSize="12sp"/>
+
+            <RadioButton
+                android:id="@+id/rbNEFT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NEFT"
+                android:textSize="12sp"/>
+
+            <RadioButton
+                android:id="@+id/rbUPI"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="UPI"
+                android:textSize="12sp"/>
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnConfirmTransfer"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="@string/confirm_transfer"
+            android:background="@drawable/btn_bank_primary"
+            app:backgroundTint="@null"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
