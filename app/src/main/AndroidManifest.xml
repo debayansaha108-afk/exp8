@@ -9,14 +9,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BasicViewsApp">
 
+        <!-- Adaptive List View demonstration -->
         <activity
-            android:name=".AccountActivity"
+            android:name=".AdaptiveListActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".AccountActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <!-- Launcher intent moved to AdaptiveListActivity -->
         </activity>
 
         <activity

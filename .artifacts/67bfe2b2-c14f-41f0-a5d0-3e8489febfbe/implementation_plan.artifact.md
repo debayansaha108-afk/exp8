@@ -1,59 +1,43 @@
-# Implementation Plan - BankMate Personal Banking App
+# Implementation Plan - Adaptive UI with ListView and ImageView
 
-Build a professional, MCA-practical-friendly banking application named **BankMate** within the current project.
+The goal is to create a modern, aesthetically pleasing screen that demonstrates an "Adaptive UI" (using a Custom Adapter) with a `ListView` and `ImageView`. This is a classic Android pattern where an Adapter dynamically creates views for list items based on a data source.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> - **Launcher Change**: `AccountActivity` will become the main entry point to streamline the demonstration.
-> - **Package Preservation**: All files will strictly use `com.example.intentlogindashboard`.
-> - **Modern UI**: I will use a "Glassmorphism" and "Material 3" hybrid design for a high-end banking feel while keeping the code simple.
+> **Navigation:** To demonstrate this new screen easily, I propose setting this new `AdaptiveListActivity` as the **default launcher Activity** in `AndroidManifest.xml` temporarily. This way, when you run the app, you will immediately see the new ListView UI. The previous BankMate application will remain intact in the code. Let me know if you'd prefer to add a button in the BankMate dashboard to open this instead!
 
 ## Proposed Changes
 
-### 1. Project Configuration
-- **Dependencies**: Add `androidx.fragment:fragment-ktx` and `androidx.cardview:cardview` to `build.gradle.kts`.
-- **Manifest**:
-    - Add `POST_NOTIFICATIONS` permission.
-    - Set `AccountActivity` as the launcher.
-    - Register `TransactionActivity`.
-    - Clean up previous placeholder activities.
+### 1. Data Model & Adapter
+#### [NEW] [ListItem.kt](file:///C:/Users/DEBAYAN/AndroidStudioProjects/IntentLoginDashboard/app/src/main/java/com/example/intentlogindashboard/ListItem.kt)
+- A simple data class holding an image resource ID, a title, and a subtitle for each list item.
 
-### 2. Resources (Aesthetics)
-- **Colors**: Deep Indigo (`#1A237E`), Success Green (`#2E7D32`), Background Light (`#F5F7FA`).
-- **Drawables**:
-    - `card_bg_balance`: Gradient blue/purple with rounded corners.
-    - `btn_gradient`: Professional blue button background.
-    - `input_field_bg`: Clean, thin-bordered background for EditTexts.
-- **Strings**: Centralize all labels, hints, and Toast messages.
+#### [NEW] [CustomListAdapter.kt](file:///C:/Users/DEBAYAN/AndroidStudioProjects/IntentLoginDashboard/app/src/main/java/com/example/intentlogindashboard/CustomListAdapter.kt)
+- A custom `ArrayAdapter` that inflates our custom layout and binds the `ListItem` data (Image and Text) to the UI components.
 
-### 3. Core Activities & Fragments
-- **AccountActivity**:
-    - Main Dashboard with Profile Info and Balance.
-    - Fragment container for switching between Details, Transfer, and History.
-    - **Lifecycle Logging**: Full implementation of all 6 methods with `Log.d`.
-- **Fragments**:
-    - `AccountDetailsFragment`: Card-based static info.
-    - `FundTransferFragment`: Form with `RadioGroup` and validation.
-    - `TransactionHistoryFragment`: List of sample transactions.
-- **TransactionActivity**:
-    - Confirmation screen.
-    - Transaction ID generation (Timestamp + Random).
-    - Notification trigger.
-    - **Lifecycle Logging**: Full implementation.
+### 2. UI Layouts
+#### [NEW] [activity_adaptive_list.xml](file:///C:/Users/DEBAYAN/AndroidStudioProjects/IntentLoginDashboard/app/src/main/res/layout/activity_adaptive_list.xml)
+- The main screen layout containing a `ListView` and a modern header.
 
-### 4. Notification System
-- **NotificationHelper**: Utility class to create channels and send notifications.
-- Handles Android 13+ permissions gracefully.
+#### [NEW] [list_item_card.xml](file:///C:/Users/DEBAYAN/AndroidStudioProjects/IntentLoginDashboard/app/src/main/res/layout/list_item_card.xml)
+- A beautiful, rounded `CardView` layout for individual list rows. It will feature an `ImageView` on the left and text on the right.
+
+### 3. Activity & Configuration
+#### [NEW] [AdaptiveListActivity.kt](file:///C:/Users/DEBAYAN/AndroidStudioProjects/IntentLoginDashboard/app/src/main/java/com/example/intentlogindashboard/AdaptiveListActivity.kt)
+- The Activity that initializes a list of sample data (e.g., a list of tech stacks or services with corresponding icons) and binds the `CustomListAdapter` to the `ListView`.
+
+#### [MODIFY] [AndroidManifest.xml](file:///C:/Users/DEBAYAN/AndroidStudioProjects/IntentLoginDashboard/app/src/main/AndroidManifest.xml)
+- Register `AdaptiveListActivity`.
+- Set it as the main launcher activity for easy demonstration.
 
 ## Verification Plan
 
 ### Automated Tests
-- `gradlew assembleDebug` to ensure zero compilation errors.
-- Resource ID check to prevent runtime crashes.
+- Build the project using `gradlew assembleDebug` to ensure all new files compile without errors.
 
 ### Manual Verification
-- **Functional Flow**: Verify navigation: Home -> Transfer -> Input -> Confirm -> Success -> Done -> Home.
-- **Validation**: Test "Confirm Transfer" with empty fields to ensure error handling works.
-- **Logging**: Monitor Logcat filter `BankMateLifecycle` to prove lifecycle events are captured.
-- **Notifications**: Ensure a system notification appears after clicking "Confirm Transfer".
+- Run the app on an emulator or physical device.
+- Verify that the app launches into the new list screen.
+- Scroll through the list to ensure the adaptive recycling works perfectly.
+- Ensure the images load properly and the UI matches the high-quality modern aesthetic.

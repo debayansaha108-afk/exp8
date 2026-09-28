@@ -1,22 +1,16 @@
-# Task: Build BankMate Application
+# Task: Adaptive UI with ListView & ImageView
 
-- [x] **Setup & Dependencies**
-    - [x] Add `fragment-ktx` to `build.gradle.kts`
-    - [x] Update `AndroidManifest.xml` (Launcher, Permissions, Activities)
-- [x] **Resources & Aesthetics**
-    - [x] Add banking strings to `strings.xml`
-    - [x] Add banking colors to `colors.xml`
-    - [x] Create modern drawables (`card_bg`, `btn_gradient`, etc.)
-- [x] **Activities Implementation**
-    - [x] Implement `AccountActivity.kt` (Dashboard + Lifecycle Logs)
-    - [x] Implement `activity_account.xml` (Balance Card + Fragment Container)
-    - [x] Implement `TransactionActivity.kt` (Extras, Notification + Lifecycle Logs)
-    - [x] Implement `activity_transaction.xml` (Professional Confirmation UI)
-- [x] **Fragments Implementation**
-    - [x] Implement `AccountDetailsFragment` (UI + Logic)
-    - [x] Implement `FundTransferFragment` (Form + Validation + Intent)
-    - [x] Implement `TransactionHistoryFragment` (Sample Data List)
-- [x] **Cleanup & Verification**
-    - [x] Delete redundant placeholder files
-    - [x] Sync Gradle and Build Project
-    - [x] Verify Functional Flow & Lifecycle Logs in Logcat
+- [x] **Data Model & Adapter**
+    - [x] Create `ListItem.kt` (Data class)
+    - [x] Create `CustomListAdapter.kt` (Custom ArrayAdapter)
+- [x] **UI Layouts**
+    - [x] Create `list_item_card.xml` (Custom row layout with ImageView)
+    - [x] Create `activity_adaptive_list.xml` (Main screen layout with ListView)
+- [x] **Activity Implementation**
+    - [x] Create `AdaptiveListActivity.kt`
+    - [x] Initialize sample data and set adapter
+- [x] **Configuration**
+    - [x] Register `AdaptiveListActivity` in `AndroidManifest.xml`
+    - [x] Set `AdaptiveListActivity` as the launcher activity
+- [x] **Verification**
+    - [x] Compile and build project

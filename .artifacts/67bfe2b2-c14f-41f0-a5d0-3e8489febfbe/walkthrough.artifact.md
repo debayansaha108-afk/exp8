@@ -1,72 +1,36 @@
-# Walkthrough - BankMate Personal Banking App
+# Walkthrough - Adaptive UI with ListView & Custom Adapter
 
-I have developed the complete BankMate application within your existing project, following the MCA practical requirements and enhancing the UI for a professional banking demonstration.
+I have successfully implemented a brand new screen demonstrating an Adaptive UI using a `ListView` and `ImageView`.
 
-## Key Accomplishments
+## Key Components
 
-### 1. Modern Banking Dashboard
-- **Launcher Activity**: `AccountActivity` is now the entry point of the app.
-- **Aesthetic UI**:
-    - Used `CardView` with gradients and rounded corners for the "Available Balance" card.
-    - Professional indigo and green color scheme established in `colors.xml`.
-    - Clean typography and spacing using `LinearLayout` and `ScrollView`.
+### 1. Data Model (`ListItem.kt`)
+Created a simple data class to hold the information for each row in the list:
+- `imageResId`: To store the icon/image for the item.
+- `title`: The primary text.
+- `subtitle`: The secondary descriptive text.
 
-### 2. Fragment-Based Navigation
-- Implemented three core fragments that swap within the main dashboard:
-    - **Account Details**: Displays customer info (Name, Account Type, Branch) in a structured list.
-    - **Fund Transfer**: A fully validated form with `EditText`s and a `RadioGroup` for transfer modes (IMPS, NEFT, UPI).
-    - **Transaction History**: Shows a clean list of sample transactions with success indicators.
+### 2. Custom Adapter (`CustomListAdapter.kt`)
+This is the core of the "Adaptive UI". It extends `ArrayAdapter` to dynamically inflate custom views (`list_item_card.xml`) for each piece of data in the `dataSource`. It utilizes the View Recycling pattern (`convertView`) for smooth scrolling and memory efficiency.
 
-### 3. Intent & Transaction Confirmation
-- Data from the `FundTransferFragment` is passed via an **explicit Intent** to `TransactionActivity`.
-- **TransactionActivity** displays a confirmation screen with a locally generated Transaction ID and all transferred details.
-- A "Done" button returns the user to the main account screen.
+### 3. Beautiful UI Layouts
+- **`list_item_card.xml`**: A modern `CardView` based layout for individual list rows. It features an `ImageView` with a circular background, a bold title, and a descriptive subtitle.
+- **`activity_adaptive_list.xml`**: The main screen that holds a clean header and the `ListView` itself, with dividers hidden for a modern card-list appearance.
 
-### 4. Notifications & Permissions
-- **Notification System**: Integrated `NotificationHelper` to trigger a system notification upon successful transaction.
-- **Permission Handling**: Properly handles `POST_NOTIFICATIONS` permission for Android 13+.
-
-### 5. Lifecycle Logging
-- All Activities and Fragments implement lifecycle methods (`onCreate`, `onStart`, `onResume`, etc.) with `Log.d` using the tag **`BankMateLifecycle`**.
+### 4. Application Logic (`AdaptiveListActivity.kt`)
+This new activity acts as the controller:
+- It prepares a sample list of generic services (Photography, Navigation, Communications, etc.) using built-in Android drawable icons.
+- It binds this data to the `ListView` via the `CustomListAdapter`.
+- It implements an `OnItemClickListener` to show a Toast message when a user taps a specific row.
 
 ---
 
-## How to Demonstrate
+## How to Test
 
-### 1. Run the Application
-- Deploy the app to an emulator or physical device. The app will launch directly into the **BankMate** dashboard.
-
-### 2. View Account Details
-- Tap the **Details** button to see the customer information card.
-
-### 3. Perform a Fund Transfer
-- Tap the **Transfer** button.
-- Fill in:
-    - **Beneficiary**: Rahul
-    - **Account Number**: 9876543210
-    - **Amount**: 2000
-    - **Mode**: Select **UPI**.
-- Tap **Confirm Transfer**.
-
-### 4. Verify Success & Notification
-- You will be taken to the **Transaction Successful** screen.
-- A system notification "BankMate Transaction Successful" will appear in the status bar.
-- Tap **Done** to return home.
-
-### 5. Check Logcat
-- Open the Logcat window in Android Studio.
-- Filter by `BankMateLifecycle` to see the Activity and Fragment lifecycle events recorded during your interaction.
-
----
-
-## Technical Details
-
-### Files Created/Modified:
-- **Activities**: `AccountActivity.kt`, `TransactionActivity.kt`
-- **Fragments**: `AccountDetailsFragment.kt`, `FundTransferFragment.kt`, `TransactionHistoryFragment.kt`
-- **Resources**: `activity_account.xml`, `activity_transaction.xml`, `fragment_account_details.xml`, `fragment_fund_transfer.xml`, `fragment_transaction_history.xml`, `strings.xml`, `colors.xml`, `drawables`
-- **Helper**: `NotificationHelper.kt`
-- **Config**: `AndroidManifest.xml`, `build.gradle.kts`, `libs.versions.toml`
+1. **Run the Application**: I have updated the `AndroidManifest.xml` to make `AdaptiveListActivity` the default launcher.
+2. **Observe the List**: When the app opens, you will immediately see a beautiful list of services.
+3. **Scroll**: Try scrolling up and down. The `ListView` combined with the Custom Adapter ensures the UI is responsive and adaptive.
+4. **Interact**: Tap on any card in the list, and a Toast will appear confirming your selection (e.g., "Clicked on: Image Gallery").
 
 > [!NOTE]
-> The project builds successfully with no compilation errors. All old placeholder activities were safely removed or simplified to ensure build stability.
+> The previous BankMate code is completely untouched and preserved. If you wish to switch back to the BankMate dashboard as the default startup screen later, you just need to move the `<intent-filter>` back to `AccountActivity` in the `AndroidManifest.xml`.
