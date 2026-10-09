@@ -27,4 +27,13 @@
     <color name="text_main">#1E293B</color>
     <color name="text_secondary">#64748B</color>
     <color name="stroke_color">#E2E8F0</color>
+
+    <!-- Dark Theme Gallery Colors -->
+    <color name="gallery_bg">#121212</color>
+    <color name="gallery_surface">#1E1E1E</color>
+    <color name="gallery_chip_bg">#2C2C2C</color>
+    <color name="neon_accent">#D4FF00</color>
+    <color name="neon_accent_dim">#33D4FF00</color>
+    <color name="text_dark_primary">#FFFFFF</color>
+    <color name="text_dark_secondary">#AAAAAA</color>
 </resources>

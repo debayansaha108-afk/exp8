@@ -1,41 +1,39 @@
-# Walkthrough - Menus and WebView Implementation
+# Walkthrough - Dark Theme Gallery Overhaul
 
-I have successfully added a new `WebPortalActivity` to your application, demonstrating how to use Options Menus and WebViews with a clean, modern UI.
+I have completely redesigned the Gallery screen to match the dark, modern, neon-accented aesthetic you requested!
 
-## Key Additions
+## UI/UX Changes
 
-### 1. Options Menu (`web_menu.xml`)
-- Created a new XML menu resource file containing standard browser actions.
-- **Home & Refresh**: These items use `app:showAsAction="ifRoom"`, so they appear directly on the Toolbar as icons.
-- **Settings & About**: These items use `app:showAsAction="never"`, meaning they are tucked neatly into the overflow menu (the three vertical dots).
+### 1. Dark Theme & Neon Accents
+- The entire background has been shifted to a deep `#121212` dark mode.
+- I introduced a bright "Neon Yellow" (`#D4FF00`) accent color used for selections, counts, and primary action buttons.
 
-### 2. Modern UI Layout (`activity_web_portal.xml`)
-- Integrated a `MaterialToolbar` to act as the modern ActionBar hosting the menu.
-- Added a horizontal `ProgressBar` directly beneath the toolbar. It is bound to the WebView's loading state, so it fills up as a web page loads and disappears when finished.
-- Added the `WebView` container to render web content in the remaining screen space.
+### 2. Custom Top Bar
+- Removed the standard Android ActionBar.
+- Built a custom top bar featuring a hamburger menu icon, the "Gallery" title, and a dynamic **Neon Pill** that tracks your current selection count (e.g., "3 / 9 SELECTED").
 
-### 3. Application Logic (`WebPortalActivity.kt`)
-- **Toolbar Setup**: Programmatically set the custom Toolbar as the Action Bar.
-- **Menu Handling**: Inflated the menu and added `onOptionsItemSelected` logic. Clicking "Refresh" reloads the page, clicking "Home" resets the URL, and clicking overflow items triggers Toast messages.
-- **WebView Configuration**:
-  - Enabled JavaScript (`settings.javaScriptEnabled = true`) for modern web compatibility.
-  - Set a `WebViewClient` to ensure links clicked inside the webpage stay inside your app, rather than opening an external browser like Chrome.
-  - Set a `WebChromeClient` to capture the loading progress (from 0 to 100) and update the `ProgressBar` accordingly.
-- **Back Navigation**: Overrode the device's back button behavior. If there is page history in the WebView (e.g., you clicked a link), pressing back will go to the previous web page. If there is no history, it will exit the activity as normal.
+### 3. Grid Item Redesign (`grid_item_layout.xml`)
+- **Taller Cards**: Changed the aspect ratio from a perfect 1:1 square to a slightly taller 4:5 ratio, giving the photos a more cinematic feel.
+- **Text Overlays**: Added a dark gradient shadow at the bottom of every image so the new Title and Subtitle text (e.g., "Coastal Cliff" / "frame_coastal.webp") are clearly legible.
+- **Neon Selection**: When an item is selected, it no longer gets a dark overlay. Instead, it gets a vibrant **3dp Neon Yellow Border** and a neon checkmark in the top left corner, perfectly matching your reference image.
+- **Popup Menus**: The 3-dot "more" icon remains in the top right corner for secondary actions.
 
-### 4. Configuration Changes
-- Added the crucial `<uses-permission android:name="android.permission.INTERNET" />` to the Manifest.
-- Temporarily set the new `WebPortalActivity` as the app's launcher so you can test it immediately.
+### 4. Bottom Controls Container
+- Added a horizontal scrolling list of **Filter Chips** ("Mixed", "Ocean", "Road", etc.) resting on a dark surface background.
+- Added a fixed **Bottom Action Bar** containing three buttons:
+  - `Select All`: Selects all 9 images at once.
+  - `Clear Selection`: Deselects all images.
+  - `View Selected`: A prominent neon button to proceed to the next step.
+
+## Logic Implementation
+- Refactored `GridImageAdapter` to accept a callback function so that whenever an image is tapped (and its selection state changes), the Activity is notified and instantly updates the "X / 9 SELECTED" text at the top.
+- Refactored the `Select All` logic to work via the new bottom button instead of the old top-right menu.
 
 ---
 
 ## How to Test
-
-1. **Run the Application**. It will launch directly into the new Web Portal screen.
-2. **Observe the Loading Bar**: Notice the progress bar moving underneath the toolbar as the default URL (Android.com) loads.
-3. **Interact with the Menu**:
-   - Tap the **Refresh** icon in the toolbar.
-   - Tap the three dots (overflow menu) and select **About** to see the Toast message.
-4. **Test Web Navigation**:
-   - Click any link on the loaded webpage. Notice how it stays inside your app.
-   - Use your device's physical or swipe **Back button**. Notice that it navigates back in the web history instead of closing the app!
+1. Re-run the app. It will launch directly into the new Dark Theme Gallery.
+2. Tap individual images to see the cool neon border and checkmark activate. Watch the top counter update dynamically.
+3. Tap "Select All" at the bottom to highlight everything.
+4. Tap "Clear Selection" to turn them all off.
+5. Tap the "View Selected" neon button to trigger a Toast showing how many items you currently have selected.
