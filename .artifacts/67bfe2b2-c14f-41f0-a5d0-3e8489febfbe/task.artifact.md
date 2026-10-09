@@ -1,16 +1,15 @@
-# Task: Adaptive UI with ListView & ImageView
+# Task: Menus & WebView Integration
 
-- [x] **Data Model & Adapter**
-    - [x] Create `ListItem.kt` (Data class)
-    - [x] Create `CustomListAdapter.kt` (Custom ArrayAdapter)
+- [x] **Permissions & Configuration**
+    - [x] Add `INTERNET` permission to `AndroidManifest.xml`
+    - [x] Set `WebPortalActivity` as launcher in `AndroidManifest.xml`
+- [x] **Menu Resources**
+    - [x] Create `res/menu/web_menu.xml`
 - [x] **UI Layouts**
-    - [x] Create `list_item_card.xml` (Custom row layout with ImageView)
-    - [x] Create `activity_adaptive_list.xml` (Main screen layout with ListView)
+    - [x] Create `res/layout/activity_web_portal.xml` (Toolbar, ProgressBar, WebView)
 - [x] **Activity Implementation**
-    - [x] Create `AdaptiveListActivity.kt`
-    - [x] Initialize sample data and set adapter
-- [x] **Configuration**
-    - [x] Register `AdaptiveListActivity` in `AndroidManifest.xml`
-    - [x] Set `AdaptiveListActivity` as the launcher activity
+    - [x] Create `WebPortalActivity.kt`
+    - [x] Setup Toolbar & Menu Inflation
+    - [x] Setup WebView, WebChromeClient, and WebViewClient
 - [x] **Verification**
     - [x] Compile and build project

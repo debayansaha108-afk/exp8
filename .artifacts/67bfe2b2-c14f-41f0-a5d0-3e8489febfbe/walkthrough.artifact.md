@@ -1,36 +1,41 @@
-# Walkthrough - Adaptive UI with ListView & Custom Adapter
+# Walkthrough - Menus and WebView Implementation
 
-I have successfully implemented a brand new screen demonstrating an Adaptive UI using a `ListView` and `ImageView`.
+I have successfully added a new `WebPortalActivity` to your application, demonstrating how to use Options Menus and WebViews with a clean, modern UI.
 
-## Key Components
+## Key Additions
 
-### 1. Data Model (`ListItem.kt`)
-Created a simple data class to hold the information for each row in the list:
-- `imageResId`: To store the icon/image for the item.
-- `title`: The primary text.
-- `subtitle`: The secondary descriptive text.
+### 1. Options Menu (`web_menu.xml`)
+- Created a new XML menu resource file containing standard browser actions.
+- **Home & Refresh**: These items use `app:showAsAction="ifRoom"`, so they appear directly on the Toolbar as icons.
+- **Settings & About**: These items use `app:showAsAction="never"`, meaning they are tucked neatly into the overflow menu (the three vertical dots).
 
-### 2. Custom Adapter (`CustomListAdapter.kt`)
-This is the core of the "Adaptive UI". It extends `ArrayAdapter` to dynamically inflate custom views (`list_item_card.xml`) for each piece of data in the `dataSource`. It utilizes the View Recycling pattern (`convertView`) for smooth scrolling and memory efficiency.
+### 2. Modern UI Layout (`activity_web_portal.xml`)
+- Integrated a `MaterialToolbar` to act as the modern ActionBar hosting the menu.
+- Added a horizontal `ProgressBar` directly beneath the toolbar. It is bound to the WebView's loading state, so it fills up as a web page loads and disappears when finished.
+- Added the `WebView` container to render web content in the remaining screen space.
 
-### 3. Beautiful UI Layouts
-- **`list_item_card.xml`**: A modern `CardView` based layout for individual list rows. It features an `ImageView` with a circular background, a bold title, and a descriptive subtitle.
-- **`activity_adaptive_list.xml`**: The main screen that holds a clean header and the `ListView` itself, with dividers hidden for a modern card-list appearance.
+### 3. Application Logic (`WebPortalActivity.kt`)
+- **Toolbar Setup**: Programmatically set the custom Toolbar as the Action Bar.
+- **Menu Handling**: Inflated the menu and added `onOptionsItemSelected` logic. Clicking "Refresh" reloads the page, clicking "Home" resets the URL, and clicking overflow items triggers Toast messages.
+- **WebView Configuration**:
+  - Enabled JavaScript (`settings.javaScriptEnabled = true`) for modern web compatibility.
+  - Set a `WebViewClient` to ensure links clicked inside the webpage stay inside your app, rather than opening an external browser like Chrome.
+  - Set a `WebChromeClient` to capture the loading progress (from 0 to 100) and update the `ProgressBar` accordingly.
+- **Back Navigation**: Overrode the device's back button behavior. If there is page history in the WebView (e.g., you clicked a link), pressing back will go to the previous web page. If there is no history, it will exit the activity as normal.
 
-### 4. Application Logic (`AdaptiveListActivity.kt`)
-This new activity acts as the controller:
-- It prepares a sample list of generic services (Photography, Navigation, Communications, etc.) using built-in Android drawable icons.
-- It binds this data to the `ListView` via the `CustomListAdapter`.
-- It implements an `OnItemClickListener` to show a Toast message when a user taps a specific row.
+### 4. Configuration Changes
+- Added the crucial `<uses-permission android:name="android.permission.INTERNET" />` to the Manifest.
+- Temporarily set the new `WebPortalActivity` as the app's launcher so you can test it immediately.
 
 ---
 
 ## How to Test
 
-1. **Run the Application**: I have updated the `AndroidManifest.xml` to make `AdaptiveListActivity` the default launcher.
-2. **Observe the List**: When the app opens, you will immediately see a beautiful list of services.
-3. **Scroll**: Try scrolling up and down. The `ListView` combined with the Custom Adapter ensures the UI is responsive and adaptive.
-4. **Interact**: Tap on any card in the list, and a Toast will appear confirming your selection (e.g., "Clicked on: Image Gallery").
-
-> [!NOTE]
-> The previous BankMate code is completely untouched and preserved. If you wish to switch back to the BankMate dashboard as the default startup screen later, you just need to move the `<intent-filter>` back to `AccountActivity` in the `AndroidManifest.xml`.
+1. **Run the Application**. It will launch directly into the new Web Portal screen.
+2. **Observe the Loading Bar**: Notice the progress bar moving underneath the toolbar as the default URL (Android.com) loads.
+3. **Interact with the Menu**:
+   - Tap the **Refresh** icon in the toolbar.
+   - Tap the three dots (overflow menu) and select **About** to see the Toast message.
+4. **Test Web Navigation**:
+   - Click any link on the loaded webpage. Notice how it stays inside your app.
+   - Use your device's physical or swipe **Back button**. Notice that it navigates back in the web history instead of closing the app!
